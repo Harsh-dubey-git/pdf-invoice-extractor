@@ -37,9 +37,7 @@ npm install
 ```env
 MONGODB_URI=mongodb://localhost:27017/flowbit
 GEMINI_API_KEY=your_gemini_api_key_here
-PORT=3001
-NODE_ENV=development
-CORS_ORIGIN=http://localhost:3000
+GROQ_API_KEY=your_grok_api_key
 ```
 
 **For the Web App (`apps/web/.env.local`):**
@@ -101,90 +99,12 @@ npm run dev:api
 - `PUT /api/invoices/:id` - Update invoice
 - `DELETE /api/invoices/:id` - Delete invoice
 
-## 📊 Data Schema
-
-```typescript
-interface InvoiceDocument {
-  _id?: string;
-  fileId: string;
-  fileName: string;
-  vendor: {
-    name: string;
-    address?: string;
-    taxId?: string;
-  };
-  invoice: {
-    number: string;
-    date: string;
-    currency?: string;
-    subtotal?: number;
-    taxPercent?: number;
-    total?: number;
-    poNumber?: string;
-    poDate?: string;
-    lineItems: Array<{
-      description: string;
-      unitPrice: number;
-      quantity: number;
-      total: number;
-    }>;
-  };
-  createdAt: string;
-  updatedAt?: string;
-}
 ```
 
 ## 🚀 Deployment
 
-### Vercel Deployment
-
-1. **Deploy Web App:**
-```bash
-cd apps/web
-vercel --prod
-```
-
-2. **Deploy API:**
-```bash
-cd apps/api
-vercel --prod
-```
-
-3. **Set Environment Variables:**
-- In Vercel dashboard, add the same environment variables as local setup
-- Update `NEXT_PUBLIC_API_URL` to point to your deployed API URL
-
-### Environment Variables for Production
-
-**API:**
-- `MONGODB_URI` - MongoDB Atlas connection string
-- `GEMINI_API_KEY` - Your Gemini API key
-- `CORS_ORIGIN` - Your deployed web app URL
-
-**Web:**
-- `NEXT_PUBLIC_API_URL` - Your deployed API URL
-
-## 🧪 Development
-
-### Available Scripts
-
-```bash
-# Development
-npm run dev          # Start both apps
-npm run dev:web      # Start web app only
-npm run dev:api      # Start API only
-
-# Building
-npm run build        # Build both apps
-npm run build:web    # Build web app only
-npm run build:api    # Build API only
-
-# Linting
-npm run lint         # Lint both apps
-
-# Clean
-npm run clean        # Clean both apps
-```
+### Deployed on render 
+https://pdfinvoiceextractor.onrender.com/?mode=edit 
 
 ### Project Structure
 
@@ -218,14 +138,4 @@ flowbit/
 2. Get your connection string
 3. Add to `apps/api/.env` as `MONGODB_URI`
 
-### Gemini API Setup
-1. Get API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
-2. Add to `apps/api/.env` as `GEMINI_API_KEY`
 
-## 📝 License
-
-This project is part of an internship assignment.
-
-## 🤝 Contributing
-
-This is an internship project. For questions or issues, please contact the development team.
